@@ -1,18 +1,15 @@
-from fastapi import FastAPI,Response,Depends
-from src.core.config import Settings
+from fastapi import FastAPI, Response, Depends
+from src.core.config import Settings, settings
 
 app = FastAPI(description="FastAPI项目实战")
 
 # 路由引入
 @app.get("/")
-def read_root(
-  settings: Settings = Depends(Settings)
-):
+def read_root():
   return {
-    "message":f"Hello from the {settings.app_name}!",
-    "database_url":settings.database_url,
-    "jwt_secret":settings.jwt_secret
-
+    "message": f"Hello from the {settings.app_name}!",
+    "database_url": settings.database_url,
+    "jwt_secret": settings.jwt_secret
   }
 
 @app.get("/health")
