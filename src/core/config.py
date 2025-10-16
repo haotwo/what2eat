@@ -1,6 +1,6 @@
-from functools import lru_cache
-from typing import Literal, Optional, Any, Dict
-from pydantic import computed_field, Field
+import secrets
+from typing import Literal, Any, Dict
+from pydantic import computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -62,7 +62,7 @@ class Settings(BaseSettings):
     return {"echo": self.echo}
 
   # JWT配置
-  jwt_secret: str = "G8V7aP2qX5sR9yL3nM6bK1tC4wF0zJ5dH8eQ2rT7yU3iP6oA9"
+  jwt_secret: str = secrets.token_urlsafe(32)
 
   model_config = SettingsConfigDict(
     env_file=".env",
@@ -71,12 +71,5 @@ class Settings(BaseSettings):
     extra="ignore",  # 忽略未定义的配置项
   )
 
-
-
-
-# @lru_cache
-# def get_settings() -> Settings:
-#     """获取缓存的设置实例"""
-#     return Settings()
 
 settings = Settings()
