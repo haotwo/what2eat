@@ -18,10 +18,11 @@ class DishUpdate(BaseModel):
   description: Annotated[str|None,Field(None,deprecated="菜品描述")]
 
 # 响应模型
-class DishRead(DishBase):
-  id:int
-  created_at:datetime
+class DishResponse(DishBase):
+    id: int
+    created_at: datetime
+    
 
-  model_config = {
-    "from_attributes":True
-  }
+    model_config = {
+        "from_attributes": True
+    }
