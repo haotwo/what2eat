@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 # 公共字段基类
 class DishBase(BaseModel):
   name:Annotated[str,Field(...,max_length=255,description="菜品名称")]
-  description: Annotated[str|None,Field(None,deprecated="菜品描述")]
+  description: Annotated[str|None,Field(None,description="菜品描述")]
 
 # 创建模型
 class DishCreate(DishBase):
@@ -15,7 +15,7 @@ class DishCreate(DishBase):
 # 更新模型
 class DishUpdate(BaseModel):
   name:Annotated[str,Field(...,max_length=255,description="菜品名称")]
-  description: Annotated[str|None,Field(None,deprecated="菜品描述")]
+  description: Annotated[str|None,Field(None,description="菜品描述")]
 
 # 响应模型
 class DishResponse(DishBase):
